@@ -94,6 +94,17 @@ fun largestProd(mtx:Array<Array<Int>>): Int
     return maxProd
 }
 
+fun coinSums(): Int{
+    val coins = arrayOf(1, 2, 5, 10, 20, 50, 100, 200)
+    var variants: Array<Int> = Array(201) { 0 }
+    variants[0] = 1//0 можем получить 1 способом
+    for (i in 0..7) {
+        for (j in coins[i]..200)
+            variants[j] += variants[j - coins[i]]//
+    }
+    return variants[200]
+}
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
