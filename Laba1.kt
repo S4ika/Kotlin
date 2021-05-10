@@ -56,4 +56,23 @@ fun  main (args:Array <String>)
     val lang = scanner.next()
 	println("Hello, $name")
 	println(liar(lang))
+	do
+    {
+        println("Choose a method\n1.Sum of elms\n2.Mul of elms\n3.Max elem\n4.Min elem")
+        println("5.Sum of odd elms greater than 3\n6.Sum of prime digits of a number")
+        println("7.Mul of div whose sun of digits is greater than num\n0.Exit")
+        val vibor = scanner.next()
+        println("Input number...")
+        val num = scanner.nextInt()
+        when(vibor)
+        {
+            "1" -> println("Sum of elms = ${sumElem(num)}")
+            "2" -> println("Mul of elms = ${mulElem(num)}")
+            "3" -> println("Max elem = ${max(num)}")
+            "4" -> println("Min elem = ${min(num)}")
+            "5" -> println("Sum of odd elms greater than 3 = ${sumOddDigitGreaterThen3(num)}")
+            "6" -> println("Sum of prime digits of a number = "+sumPrimeDiv(num))
+            "7" -> println("Mul of div whose sun of digits is greater than num = ${div(num)}")
+        }
+    }while(vibor!="0")
 }
