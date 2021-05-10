@@ -19,6 +19,13 @@ fun maxElem(num:Int,max:Int) : Int = if (num == 0) max else if (num%10 > max) ma
 fun min(num:Int) : Int = minElem(num,9)
 fun minElem(num:Int,min:Int) : Int = if (num == 0) min else if (num%10 < min) minElem(num/10,num%10) else minElem(num/10,min)
 
+//Прoстое число
+fun primeDigit(digit:Int):Int = if (digit < 2) 0 else prime(digit,2)
+
+fun prime(digit:Int,iterator:Int):Int = if(digit == iterator) digit else if(digit%iterator != 0) prime(digit,iterator+1) else 0
+
+fun sumPrimeDiv(digit:Int):Int = if (digit == 0) 0 else (primeDigit(digit%10)+sumPrimeDiv(digit/10))
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
