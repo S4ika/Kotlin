@@ -8,6 +8,8 @@ fun liar(lang:String):String =
         else -> "Good choice"
     } 
 	
+fun sumElem(num:Int) : Int = if(num == 0) 0 else (num % 10)+ sumElem(num / 10)
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
