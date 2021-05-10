@@ -26,6 +26,14 @@ fun prime(digit:Int,iterator:Int):Int = if(digit == iterator) digit else if(digi
 
 fun sumPrimeDiv(digit:Int):Int = if (digit == 0) 0 else (primeDigit(digit%10)+sumPrimeDiv(digit/10))
 
+//Найти количество нечетных цифр числа, больших 3
+fun sumOddDigitGreaterThen3(num:Int): Int = sumOddDigit(num,0,3)
+fun oddDigit(digit:Int): Boolean = digit%2 != 0
+fun sumOddDigit(digit:Int,sum:Int,condition:Int):Int = if(digit==0) sum else{
+    if (digit % 10 > condition && (oddDigit(digit%10)) ) sumOddDigit(digit/10,sum+1,condition)
+    else sumOddDigit(digit/10,sum,condition)
+}
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
