@@ -47,6 +47,53 @@ fun mulDel(num:Int,del:Int,pr:Int): Int =
         else -> mulDel(num,del+1,pr)
     }
 
+fun largestProd(mtx:Array<Array<Int>>): Int
+{
+    var maxProd = 0
+    var fN = 0
+    var sN = 0
+    var tN = 0
+    var foN = 0
+    for (i in 0..19)
+        for (j in 0..16)
+            if(mtx[i][j] * mtx[i][j+1] * mtx[i][j+2] * mtx [i][j+3] > maxProd) {
+                fN = mtx[i][j]
+                sN = mtx[i][j + 1]
+                tN = mtx[i][j + 2]
+                foN = mtx[i][j + 3]
+                maxProd = mtx[i][j] * mtx[i][j + 1] * mtx[i][j + 2] * mtx[i][j + 3]
+            }
+    for (i in 0..16)
+        for (j in 0..19)
+            if(mtx[i][j] * mtx[i+1][j] * mtx[i+2][j] * mtx [i+3][j] > maxProd) {
+                fN = mtx[i][j]
+                sN = mtx[i + 1][j]
+                tN = mtx[i + 2][j]
+                foN = mtx[i + 3][j]
+                maxProd = mtx[i][j] * mtx[i + 1][j] * mtx[i + 2][j] * mtx[i + 3][j]
+            }
+    for (i in 0..16)
+        for (j in 0..16)
+            if(mtx[i][j] * mtx[i+1][j+1] * mtx[i+2][j+2] * mtx[i+3][j+3] > maxProd)
+            {   fN = mtx[i][j]
+                sN = mtx[i + 1][j + 1]
+                tN = mtx[i + 2][j + 2]
+                foN = mtx[i + 3][j + 3]
+                maxProd = mtx[i][j] * mtx[i+1][j+1] * mtx[i+2][j+2] * mtx[i+3][j+3]
+            }
+    for (i in 3..19)
+        for (j in 0..16)
+            if (mtx[i][j] * mtx[i-1][j+1] * mtx[i-2][j+2] * mtx[i-3][j+3] > maxProd) {
+                fN = mtx[i][j]
+                sN = mtx[i - 1][j + 1]
+                tN = mtx[i - 2][j + 2]
+                foN = mtx[i - 3][j + 3]
+                maxProd = mtx[i][j] * mtx[i - 1][j + 1] * mtx[i - 2][j + 2] * mtx[i - 3][j + 3]
+            }
+    println("$fN\n$sN\n$tN\n$foN\n")
+    return maxProd
+}
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
