@@ -34,6 +34,19 @@ fun sumOddDigit(digit:Int,sum:Int,condition:Int):Int = if(digit==0) sum else{
     else sumOddDigit(digit/10,sum,condition)
 }
 
+//Найти прозведение таких делителей числа, сумма цифр которых меньше, чем сумма цифр исходного числа.
+fun div(num:Int): Int = mulDel(num,1,1)
+fun divisor(num:Int,del:Int):Boolean = num%del==0
+fun mulDel(num:Int,del:Int,pr:Int): Int =
+    when {
+        num == del -> pr
+        sumElem(del)<sumElem(num) && divisor(num,del)->
+        {   println(del)
+            mulDel(num,del+1,pr*del)
+        }
+        else -> mulDel(num,del+1,pr)
+    }
+
 fun  main (args:Array <String>)
 {
     val scanner = Scanner(`in`)
