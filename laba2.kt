@@ -34,6 +34,10 @@ tailrec fun digitIfDown(num:Int, acum : Int, f : (Int, Int) -> Int, pr : (Int) -
 fun minDigitIfDown(num : Int) : Int = digitIfDown(num, 9, {a, b -> if (a < b) a else b}, {x -> x % 2 == 0})
 
 fun maxDigitIfDown(num : Int) : Int = digitIfDown(num, 0, {a, b -> if (a > b) a else b}, {x -> x % 2 == 0})
+//Task 6
+fun test1(num : Int) : Int = digitIfDown(num, 1, {a,b -> a * b}, {x -> x % 2 == 0 && x > 6}) // считает произведение четных цифр >6
+fun test2(num : Int) : Int = digitIfDown(num, 1, {a,b -> a + b}, {x -> x in 4..6 }) // считает сумму цифр больших 4 и меньших 7
+fun test3(num : Int) : Int = digitIfDown(num, 1, {a,b -> a + b}, {x -> x == 1}) // считает сумму единиц в числе
 
 fun main()
 {
@@ -47,4 +51,5 @@ fun main()
     println("Max digit of a number : ${maxDigitDown(s)}")
 	println("Min digit of a number(down) : ${dminDigitDown(s)}")
     println("Min digit of a number(down) : ${ minDigitIfDown(s)}")
+	println("Tests results:\nTest 1: test1(s)\nTest 2: test2(s)\nTest 3: test3(s)")
 }
