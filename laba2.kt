@@ -27,6 +27,13 @@ tailrec fun ddigitDown(num:Int, acum : Int, f : (Int, Int) -> Int) : Int
 fun dminDigitDown(num : Int) : Int = ddigitDown(num, 9, {a, b -> if (a < b) a else b})
 
 fun dmaxDigitDown(num : Int) : Int = ddigitDown(num, 0, {a, b -> if (a > b) a else b})
+//Task 5
+tailrec fun digitIfDown(num:Int, acum : Int, f : (Int, Int) -> Int, pr : (Int) -> Boolean) : Int
+        = if (num == 0) acum else digitIfDown(num / 10, if (pr(num % 10)) f (num % 10, acum) else acum, f, pr)
+
+fun minDigitIfDown(num : Int) : Int = digitIfDown(num, 9, {a, b -> if (a < b) a else b}, {x -> x % 2 == 0})
+
+fun maxDigitIfDown(num : Int) : Int = digitIfDown(num, 0, {a, b -> if (a > b) a else b}, {x -> x % 2 == 0})
 
 fun main()
 {
