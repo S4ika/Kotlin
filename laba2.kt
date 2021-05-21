@@ -20,6 +20,13 @@ tailrec fun digitDown(num:Int, acum : Int, f : (Int, Int) -> Int, pr : (Int) -> 
 fun minDigitDown(num : Int) : Int = digitDown(num, 9, {a, b -> if (a < b) a else b}, {x -> true})
 
 fun maxDigitDown(num : Int) : Int = digitDown(num, 0, {a, b -> if (a > b) a else b}, {x -> true})
+//Task4
+tailrec fun ddigitDown(num:Int, acum : Int, f : (Int, Int) -> Int) : Int
+        = if (num == 0) acum else ddigitDown(num / 10, f (num % 10, acum) , f)
+
+fun dminDigitDown(num : Int) : Int = ddigitDown(num, 9, {a, b -> if (a < b) a else b})
+
+fun dmaxDigitDown(num : Int) : Int = ddigitDown(num, 0, {a, b -> if (a > b) a else b})
 
 fun main()
 {
@@ -31,4 +38,6 @@ fun main()
     println("Mul of digits of a number (down) : ${mulDown(s)}")
     println("Min digit of a number : ${minDigitDown(s)}")
     println("Max digit of a number : ${maxDigitDown(s)}")
+	println("Min digit of a number(down) : ${dminDigitDown(s)}")
+    println("Min digit of a number(down) : ${ minDigitIfDown(s)}")
 }
