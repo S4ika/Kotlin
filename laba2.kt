@@ -71,6 +71,15 @@ tailrec fun mulDel(num:Int,del:Int,pr:Int): Int =
         else -> mulDel(num,del+1,pr)
     }
 	
+//Task 8
+fun op(operator: Char): (Int, Int) -> Int =
+    when (operator) {
+    '+' -> {a: Int, b: Int -> a + b}
+    '-' -> {a: Int, b: Int -> a - b}
+    '*' -> {a: Int, b: Int -> a * b}
+    else -> throw IllegalArgumentException("Try again")
+}
+
 fun main()
 {
     val scanner = Scanner(`in`)
@@ -84,4 +93,8 @@ fun main()
 	println("Min digit of a number(down) : ${dminDigitDown(s)}")
     println("Min digit of a number(down) : ${ minDigitIfDown(s)}")
 	println("Tests results:\nTest 1: test1(s)\nTest 2: test2(s)\nTest 3: test3(s)")
+	println("Sum of prime divs(down) : ${sumProst(s)}")
+    println("Sum of odd elms greater than 3 = ${sumOddDigitGreaterThan3(s)}")
+
+    println(op('-')(17,23))
 }
