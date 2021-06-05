@@ -186,3 +186,21 @@ fun kolvoMinElms(array:Array<Int>) = kolvoMinElms(array,0,minArrayEl(array),0)
 fun kolvoMinElms(array:Array<Int>,counter:Int,minEl:Int,kolvo:Int):Int =
     if (array.size == counter) kolvo
     else kolvoMinElms(array,counter+1,minEl,if(array[counter]==minEl) kolvo+1 else kolvo)
+	
+//5.1
+fun listOp(): List<Int> {
+    print("введите размер списка:  ")
+    val size = readLine()!!.toInt()
+    val l = mutableListOf<Int>()
+    return listInput(l, size)
+}
+
+fun listInput(l : List<Int>, size: Int) : List<Int> =   // ввод массива с клавиатуры
+    listInput(l, 0, size)
+tailrec fun listInput(l : List<Int>, counter : Int, size : Int) : List<Int> =
+    if (counter == size) l else listInput(l.plus(readLine()!!.toInt()), counter + 1, size)
+
+
+tailrec fun listOp(a: Iterator<Int>, f: (Int, Int) -> Int, result: Int): Int =
+    if (a.iterator().hasNext() == false) result else
+        listOp(a, f, f(a.iterator().next(),result))	
