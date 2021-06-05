@@ -120,3 +120,13 @@ else {
     list.add(array[counter],list.size)
     addElmsAfterMinlist(list,array,counter+1)
 }
+//1.15 Дан целочисленный массив и натуральный индекс (число, меньшее
+//размера массива). Необходимо определить является ли элемент по
+//указанному индексу локальным минимумом.
+fun localMin(array:Array<Int>,counter: Int):Boolean =
+    when (counter)
+    {
+        1 -> array[counter] < array[counter + 1]
+        array.size - 1 -> array[counter] < array[counter - 1]
+        else -> (array[counter] < array[counter - 1] && array[counter]  < array[counter + 1])
+    }
