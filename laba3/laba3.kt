@@ -130,3 +130,9 @@ fun localMin(array:Array<Int>,counter: Int):Boolean =
         array.size - 1 -> array[counter] < array[counter - 1]
         else -> (array[counter] < array[counter - 1] && array[counter]  < array[counter + 1])
     }
+//1.25 Дан целочисленный массив и интервал a..b. Необходимо найти
+//максимальный из элементов в этом интервале.
+fun localMaxInRange(array:Array<Int>) = localMaxInRange(array,2,2,5,array[2])
+fun localMaxInRange(array:Array<Int>, counter:Int, a:Int, b:Int, max: Int): Int =
+    if(counter > b) max
+    else localMaxInRange(array,counter + 1,a,b,(if(array[counter] > max) array[counter] else max))
