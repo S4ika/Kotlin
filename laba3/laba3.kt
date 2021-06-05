@@ -35,4 +35,46 @@ fun arrayIn():Array<Int>
     }
     return array
 }
+//task 3
+//Ввод из файла
+fun arrayInputFile(input : Map<Int, Int>) : Array<Int> {
+    val numbers:Array<Int> = Array(input.size){0}
+    return arrayInputFile(numbers, 0,  input)
+}
 
+fun arrayInputFile(array : Array<Int>, counter : Int, input : Map<Int, Int>) : Array<Int> =
+    if (counter == array.size) array
+    else {
+        array[counter] = input[counter]!!
+        arrayInputFile(array, counter + 1, input)
+    }
+
+//Организация чтения из файла
+fun inputFile(fileName:String) : Array<Int> {
+    val input = File(fileName).readLines()
+        .withIndex()
+        .map{ indexedValue -> indexedValue.index to indexedValue.value.toInt() }//создает список индексов и строк соответсвующих
+        .toMap()
+
+    return arrayInputFile(input)
+}
+
+//Функция выбора источника считывания(Клавиатура или файл)
+fun selectInput() : Array<Int>{
+    println("Откуда считывать массив?\n" +
+            "Клавиатура\n" +
+            "Файл")
+    val scanner = Scanner(`in`)
+    do {
+
+        when (scanner.next()) {
+            "Файл" -> {
+                println("Введите имя файла: ")
+                return inputFile(scanner.next())
+            }
+            "Клавиатура" -> return readArray()
+            else -> { println("Введите заново") }
+        }
+
+    }while(true)
+}
