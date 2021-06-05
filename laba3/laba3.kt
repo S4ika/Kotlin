@@ -162,3 +162,15 @@ fun secondMax (array:Array<Int>) = secondMax(array,array.elementAt(maxArrayEl(ar
 fun secondMax(array:Array<Int>,indexMax: Int,counter:Int, secondMax:Int):Int =
     if(array.size == counter) secondMax
     else secondMax(array,indexMax,counter + 1,if(counter != indexMax && array[counter]>secondMax) array[counter] else secondMax)
+
+//1.37 Дан целочисленный массив. Вывести индексы элементов, которые
+//меньше своего левого соседа, и количество таких чисел.
+fun countIndLitlLeftNeigh(array:Array<Int>) = countIndLitlLeftNeigh(array,0, 0)
+fun countIndLitlLeftNeigh(array:Array<Int>,counter:Int, kolvo:Int):Int =
+    if(counter == array.size) kolvo
+    else if (counter > 0 && array[counter] > array[counter-1])
+    {
+        println(counter)
+        countIndLitlLeftNeigh(array,counter+1,kolvo+1)
+    }
+    else countIndLitlLeftNeigh(array,counter+1,kolvo)
