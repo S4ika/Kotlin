@@ -90,3 +90,11 @@ fun findLastMax(array:Array<Int>,max: Int,counter: Int, kolvo: Int):Int =
     if (counter == array.size) kolvo
     else if(array[counter] > max) findLastMax(array, array[counter],counter + 1, 0)
     else findLastMax(array,max,counter + 1, kolvo + 1)
+//1.2 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//индекс
+//минимального элемента.
+fun findIndexMinEl(array:Array<Int>):Int = array.elementAt(minArrayEl(array))
