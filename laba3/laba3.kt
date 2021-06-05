@@ -98,3 +98,25 @@ fun findLastMax(array:Array<Int>,max: Int,counter: Int, kolvo: Int):Int =
 //индекс
 //минимального элемента.
 fun findIndexMinEl(array:Array<Int>):Int = array.elementAt(minArrayEl(array))
+//1.13 Дан целочисленный массив. Необходимо разместить элементы,
+//расположенные до минимального, в конце массива.
+fun elemsUntilMin(array:Array<Int>): MutableList<Int>
+    {
+        val list1: MutableList<Int> = mutableListOf<Int>()
+        val list2: MutableList<Int> = mutableListOf<Int>()
+        /*val list3: MutableList<Int> = addElmsAfterMinlist(list2,array,array.elementAt(minArrayEl(array)))
+        val list4: MutableList<Int> = */
+        return addElmsAfterMinlist(list2,array,(array.elementAt(minArrayEl(array))))// + addElmsUntilMin(list1,array,minArrayEl(array),0)) as MutableList<Int>
+    }
+tailrec fun addElmsUntilMin(list:MutableList<Int>,array:Array<Int>,min:Int,counter: Int):MutableList<Int> =
+    if(array[counter] == min) list
+    else {
+        list.add(array[counter],list.size)
+        addElmsUntilMin(list,array,min,counter+1)
+    }
+tailrec fun addElmsAfterMinlist(list:MutableList<Int>,array:Array<Int>,counter: Int):MutableList<Int> =
+if(counter == array.size) list
+else {
+    list.add(array[counter],list.size)
+    addElmsAfterMinlist(list,array,counter+1)
+}
