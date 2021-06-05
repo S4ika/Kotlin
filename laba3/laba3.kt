@@ -226,4 +226,55 @@ fun listInputFile(fileName:String) : MutableList<Int> {
         .toMap()
 
     return listInputFile(input)
-}		
+}
+
+//8.1 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//количество
+//элементов, расположенных после последнего максимального.
+fun sumElAfterMax(list:MutableList<Int>) = findLastMax(list,list[0],0,0)
+fun findLastMax(list:MutableList<Int>,max: Int,counter: Int, kolvo: Int):Int =
+    if (counter == list.size) kolvo
+    else if(list[counter] > max) findLastMax(list, list[counter],counter + 1, 0)
+    else findLastMax(list,max,counter + 1, kolvo + 1)
+//8.15 Дан целочисленный массив и натуральный индекс (число, меньшее
+//размера массива). Необходимо определить является ли элемент по
+//указанному индексу локальным минимумом.
+fun localMin(list:MutableList<Int>,counter: Int):Boolean =
+    when (counter)
+    {
+        1 -> list[counter] < list[counter + 1]
+        list.size - 1 -> list[counter] < list[counter - 1]
+        else -> (list[counter] < list[counter - 1] && list[counter]  < list[counter + 1])
+    }
+//8.25 Дан целочисленный массив и интервал a..b. Необходимо найти
+//максимальный из элементов в этом интервале.
+fun localMaxInRange(list:MutableList<Int>) = localMaxInRange(list,2,2,5,list[2])
+fun localMaxInRange(list:MutableList<Int>, counter:Int, a:Int, b:Int, max: Int): Int =
+    if(counter > b) max
+    else localMaxInRange(list,counter + 1,a,b,(if(list[counter] > max) list[counter] else max))
+//8.37 Дан целочисленный массив. Вывести индексы элементов, которые
+//меньше своего левого соседа, и количество таких чисел.
+fun countIndLitlLeftNeigh(array:MutableList<Int>) = countIndLitlLeftNeigh(array,0, 0)
+fun countIndLitlLeftNeigh(array:MutableList<Int>,counter:Int, kolvo:Int):Int =
+    if(counter == array.size) kolvo
+    else if (counter > 0 && array[counter] > array[counter-1])
+    {
+        println(counter)
+        countIndLitlLeftNeigh(array,counter+1,kolvo+1)
+    }
+    else countIndLitlLeftNeigh(array,counter+1,kolvo)
+//8.43 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//количество
+//минимальных элементов.
+fun kolvoMinElms(array:MutableList<Int>) = kolvoMinElms(array,0,minListEl(array),0)
+fun kolvoMinElms(array:MutableList<Int>,counter:Int,minEl:Int,kolvo:Int):Int =
+    if (array.size == counter) kolvo
+    else kolvoMinElms(array,counter+1,minEl,if(array[counter]==minEl) kolvo+1 else kolvo)		
