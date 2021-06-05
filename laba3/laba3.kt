@@ -203,4 +203,27 @@ tailrec fun listInput(l : List<Int>, counter : Int, size : Int) : List<Int> =
 
 tailrec fun listOp(a: Iterator<Int>, f: (Int, Int) -> Int, result: Int): Int =
     if (a.iterator().hasNext() == false) result else
-        listOp(a, f, f(a.iterator().next(),result))	
+        listOp(a, f, f(a.iterator().next(),result))
+
+//Ввод из файла
+fun listInputFile(input : Map<Int, Int>) : MutableList<Int> {
+    val numbers:MutableList<Int> = MutableList(input.size){0}
+    return listInputFile(numbers, 0,  input)
+}
+
+fun listInputFile(list : MutableList<Int>, counter : Int, input : Map<Int, Int>) : MutableList<Int> =
+    if (counter == list.size) list
+    else {
+        list[counter] = input[counter]!!
+        listInputFile(list, counter + 1, input)
+    }
+
+//Организация чтения из файла
+fun listInputFile(fileName:String) : MutableList<Int> {
+    val input = File(fileName).readLines()
+        .withIndex()
+        .map{ indexedValue -> indexedValue.index to indexedValue.value.toInt() }//создает список индексов и строк соответсвующих
+        .toMap()
+
+    return listInputFile(input)
+}		
