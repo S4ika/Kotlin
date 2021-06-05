@@ -174,3 +174,15 @@ fun countIndLitlLeftNeigh(array:Array<Int>,counter:Int, kolvo:Int):Int =
         countIndLitlLeftNeigh(array,counter+1,kolvo+1)
     }
     else countIndLitlLeftNeigh(array,counter+1,kolvo)
+	
+//1.43 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//количество
+//минимальных элементов.
+fun kolvoMinElms(array:Array<Int>) = kolvoMinElms(array,0,minArrayEl(array),0)
+fun kolvoMinElms(array:Array<Int>,counter:Int,minEl:Int,kolvo:Int):Int =
+    if (array.size == counter) kolvo
+    else kolvoMinElms(array,counter+1,minEl,if(array[counter]==minEl) kolvo+1 else kolvo)
