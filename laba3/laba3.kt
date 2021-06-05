@@ -136,3 +136,29 @@ fun localMaxInRange(array:Array<Int>) = localMaxInRange(array,2,2,5,array[2])
 fun localMaxInRange(array:Array<Int>, counter:Int, a:Int, b:Int, max: Int): Int =
     if(counter > b) max
     else localMaxInRange(array,counter + 1,a,b,(if(array[counter] > max) array[counter] else max))
+	
+//1.28 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//элементы,
+//расположенные между первым и последним максимальным.
+fun findElemsBetweenHighs(array: Array<Int>) =
+    if(array.elementAt(maxArrayEl(array)) < array.elementAt(secondMax(array)))
+        prntElsBtwnTwoMax(array,array.elementAt(maxArrayEl(array)),array.elementAt(secondMax(array)),array.elementAt(maxArrayEl(array))+1)
+    else
+        prntElsBtwnTwoMax(array,array.elementAt(secondMax(array)),array.elementAt(maxArrayEl(array)),array.elementAt(secondMax(array)+1))
+
+fun prntElsBtwnTwoMax(array:Array<Int>,indexFirstMax:Int,indexSecondMax:Int,counter:Int) {
+    if (counter == indexSecondMax) println(array[counter])
+    else {
+        println(array[counter])
+        prntElsBtwnTwoMax(array, indexFirstMax, indexSecondMax, counter + 1)
+    }
+}
+
+fun secondMax (array:Array<Int>) = secondMax(array,array.elementAt(maxArrayEl(array)),0,array[0])
+fun secondMax(array:Array<Int>,indexMax: Int,counter:Int, secondMax:Int):Int =
+    if(array.size == counter) secondMax
+    else secondMax(array,indexMax,counter + 1,if(counter != indexMax && array[counter]>secondMax) array[counter] else secondMax)
