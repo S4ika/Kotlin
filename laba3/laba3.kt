@@ -78,3 +78,15 @@ fun selectInput() : Array<Int>{
 
     }while(true)
 }
+//1.1 Дан
+//целочисленный
+//массив.
+//Необходимо
+//найти
+//количество
+//элементов, расположенных после последнего максимального.
+fun sumElAfterMax(array:Array<Int>) = findLastMax(array,array[0],0,0)
+fun findLastMax(array:Array<Int>,max: Int,counter: Int, kolvo: Int):Int =
+    if (counter == array.size) kolvo
+    else if(array[counter] > max) findLastMax(array, array[counter],counter + 1, 0)
+    else findLastMax(array,max,counter + 1, kolvo + 1)
