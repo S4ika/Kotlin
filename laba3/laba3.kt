@@ -277,4 +277,21 @@ fun countIndLitlLeftNeigh(array:MutableList<Int>,counter:Int, kolvo:Int):Int =
 fun kolvoMinElms(array:MutableList<Int>) = kolvoMinElms(array,0,minListEl(array),0)
 fun kolvoMinElms(array:MutableList<Int>,counter:Int,minEl:Int,kolvo:Int):Int =
     if (array.size == counter) kolvo
-    else kolvoMinElms(array,counter+1,minEl,if(array[counter]==minEl) kolvo+1 else kolvo)		
+    else kolvoMinElms(array,counter+1,minEl,if(array[counter]==minEl) kolvo+1 else kolvo)
+
+8.49//Для введенного списка положительных чисел построить список всех
+//положительных простых делителей элементов списка без повторений.
+tailrec fun listOfPrimeDels(list: List<Int>, listDel: MutableList<Int>, counter: Int):List<Int> = if(counter != list.size)
+    listOfPrimeDels(list, listOfDel(list[counter],1, listDel), counter + 1) else listDel.distinct()
+
+//Формирование списка делителей числа
+fun listOfDel(num:Int,del:Int, list: MutableList<Int>):MutableList<Int> = if(del == num) list.plus(del).toMutableList()
+else if(num % del == 0 && primeDigit(del)) listOfDel(num, del + 1, list.plus(del).toMutableList())
+else listOfDel(num, del + 1, list)
+//Проверка числа на простоту
+fun primeDigit(num:Int) = primeDigit(num,2)
+fun primeDigit(num:Int,del:Int):Boolean =
+    if (num == del) true
+    else if (num%del == 0) false
+    else primeDigit(num,del+1)
+	
